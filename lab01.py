@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 T = 5
 sigma = 1
 
-n = 25
+n = 100
 dt = 1
 t_max = dt * (n - 1) / 2
 t_values = np.arange(-t_max, t_max, dt)

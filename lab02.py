@@ -11,12 +11,11 @@ from time import time
 T = 5
 sigma = 1
 
-n = 250
-dt = 0.1
-t_max = dt * (n - 1) / 2
-t_values = np.arange(-t_max, t_max, dt)
+n = 128
+# dt = 0.05
+# t_max = dt * (n - 1) / 2
+t_values = np.linspace(-2*T, 2*T, n)
 
-step = 0.1
 
 def rect_func(t):
     return 1 if -T < t and t < T else 0
@@ -55,11 +54,11 @@ rect_dft = dft(rect)
 print(f'DFT, rect: {time() - start}')
 
 rect_shifted_dft = np.fft.fftshift(rect_dft)
-rect_norma_twins_dft = norma(rect_dft)
-rect_norma_dft = norma(rect_shifted_dft)
+rect_norma_twins_dft = np.abs(rect_dft)
+rect_norma_dft = np.abs(rect_shifted_dft)
 rect_shifted = np.fft.fftshift(rect_fft)
-rect_norma_twins = norma(rect_fft)
-rect_norma = norma(rect_shifted)
+rect_norma_twins = np.abs(rect_fft)
+rect_norma = np.abs(rect_shifted)
 plt.plot(t_values, rect, 'r', label='Исходный прямоугольный импульс')
 plt.legend(loc="upper left")
 plt.show()
@@ -85,11 +84,11 @@ gauss_dft = dft(gauss)
 print(f'DFT, Gauss, {time() - start}')
 
 gauss_shifted_dft = np.fft.fftshift(gauss_dft)
-gauss_norma_twins_dft = norma(gauss_dft)
-gauss_norma_dft = norma(gauss_shifted_dft)
+gauss_norma_twins_dft = np.abs(gauss_dft)
+gauss_norma_dft = np.abs(gauss_shifted_dft)
 gauss_shifted = np.fft.fftshift(gauss_fft)
-gauss_norma_twins = norma(gauss_fft)
-gauss_norma = norma(gauss_shifted)
+gauss_norma_twins = np.abs(gauss_fft)
+gauss_norma = np.abs(gauss_shifted)
 plt.plot(t_values, gauss, 'r', label='Исходный сигнал Гаусса')
 plt.legend(loc="upper left")
 plt.show()
